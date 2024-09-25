@@ -1,5 +1,3 @@
-#!/bin/sh
-
 FROM ubuntu:latest
 
 RUN apt-get update && apt-get install -y \
@@ -7,9 +5,10 @@ RUN apt-get update && apt-get install -y \
   python3-pip \
   git \
   build-essential \
-  python3-dev
-
-RUN pip3 install PyYAML
+  python3-dev \
+  python3-yaml \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 COPY feed.py /usr/bin/feed.py
 
